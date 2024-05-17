@@ -10,13 +10,12 @@ import { FaRegHeart } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import Search from "../Components/Search";
 
-
 const Navbar = () => {
   let isAuthenticated = true;
 
   const [opennav, setopennav] = useState(false);
   const [profileopen, setprofileopen] = useState(false);
-  const [searchpanel,setsearchpanel] = useState(false)
+  const [searchpanel, setsearchpanel] = useState(false);
 
   const toggleNav = () => {
     setopennav(!opennav);
@@ -24,17 +23,17 @@ const Navbar = () => {
 
   return (
     <div>
-      <header className="bg-[#ffffff30] px-4 md:px-8 py-1">
-        <nav className="flex items-center  justify-between">
+      <header className="fixed w-full  top-0 z-50 bg-white px-4 md:px-8 py-1">
+        <nav className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <img src={logo} alt="logo" className=" h-8 md:h-12" />
+            <img src={logo} alt="logo" className="h-8 md:h-12" />
             <h1 className="text-2xl md:text-3xl font-semibold">OXY</h1>
           </div>
 
           {/* small screens */}
           {opennav && (
             <>
-              <div className="fixed top-0 right-0 w-screen h-full bg-black/50 backdrop-blur-sm  bg-slate-500">
+              <div className="fixed top-0 right-0 w-screen h-full bg-[#ffffff30] backdrop-blur-sm ">
                 <section className="absolute bg-white  flex flex-col text- duration-100 top-0 right-0 h-screen p-4 px-12 gap-4 z-50">
                   <button
                     className="text-2xl mb-8 cursor-pointer pl-16"
@@ -96,19 +95,15 @@ const Navbar = () => {
             </ul>
           </div>
 
-
-
-          <div className="flex items-center gap-2  md:gap-4">
-
-           
-           <button className="py-1 px-2" onClick={()=>setsearchpanel(!searchpanel)}>
-            <IoSearch className="text-2xl md:text-3xl"/></button>
-            {
-              searchpanel && (
-                <><Search onClose={()=>setsearchpanel(!searchpanel)}/></>
-              )
-            }
-           
+          <div className="flex items-center gap-2 md:gap-4">
+            <button className="py-1 px-2" onClick={() => setsearchpanel(!searchpanel)}>
+              <IoSearch className="text-2xl md:text-3xl" />
+            </button>
+            {searchpanel && (
+              <>
+                <Search onClose={() => setsearchpanel(!searchpanel)} />
+              </>
+            )}
 
             {!isAuthenticated && (
               <button className="duration-150 bg-blue-500 border-0 px-1 md:px-3 py-1 rounded-md text-white hover:bg-green-500 hover:scale-110">
@@ -124,10 +119,10 @@ const Navbar = () => {
                   className="rounded-circle h-10 md:h-12 border-2 rounded-full cursor-pointer "
                 />
 
-                {/* Porofile Dropdown */}
+                {/* Profile Dropdown */}
                 {profileopen && (
                   <>
-                    <div className="bg-[#ffffff30] items-center absolute top-16 md:right-10 right-4 ">
+                    <div className="bg-white items-center absolute top-16 md:right-10 right-4 ">
                       <div className="flex flex-col gap-2 border-2 px-5 py-2">
                         <Link>My Account</Link>
                         <Link>Returns and Order</Link>
@@ -151,7 +146,6 @@ const Navbar = () => {
                 )}
               </>
             )}
-
 
             <button onClick={toggleNav} className="md:hidden">
               <FaBars className="text-3xl " />
